@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="25dp"
     tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         >
 
         <LinearLayout
@@ -29,6 +30,7 @@
                     android:id="@+id/icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:contentDescription="@string/image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +60,7 @@
                     android:id="@+id/verySadButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:contentDescription="@string/verySad"
                     android:layout_marginHorizontal="10dp"
                     android:src="@drawable/ic_very_sad_40"
                     android:background="@android:color/transparent"
@@ -67,6 +70,7 @@
                     android:id="@+id/sadButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:contentDescription="@string/sad"
                     android:layout_marginHorizontal="10dp"
                     android:src="@drawable/ic_sad_40"
                     android:background="@android:color/transparent"
@@ -76,6 +80,7 @@
                     android:id="@+id/neutralButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:contentDescription="@string/neutral"
                     android:layout_marginHorizontal="10dp"
                     android:src="@drawable/ic_neutral_40"
                     android:background="@android:color/transparent"
@@ -85,6 +90,7 @@
                     android:id="@+id/happyButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:contentDescription="@string/happy"
                     android:layout_marginHorizontal="10dp"
                     android:src="@drawable/ic_happy_40"
                     android:background="@android:color/transparent"
@@ -94,6 +100,7 @@
                     android:id="@+id/veryHappyButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:contentDescription="@string/veryHappy"
                     android:layout_marginHorizontal="10dp"
                     android:src="@drawable/ic_very_happy_40"
                     android:background="@android:color/transparent"
@@ -113,9 +120,10 @@
 
             <GridLayout
                 android:id="@+id/barGraphs"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_gravity="center"
                 android:columnCount="2"
                 >
 
@@ -124,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:text="@string/veryHappy"
                     />
 
@@ -138,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:text="@string/happy"
                     />
 
@@ -152,7 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:text="@string/neutral"
                     />
 
@@ -166,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:text="@string/sad"
                     />
 
@@ -180,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:text="@string/verySad"
                     />
 

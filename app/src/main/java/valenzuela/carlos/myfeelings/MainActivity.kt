@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity() {
     var data: Boolean = false
     var lista = ArrayList<Emociones>()
 
-    var graph: ConstraintLayout = findViewById(R.id.graph)
-    var graphVeryHappy: View = findViewById(R.id.veryHappyGraph)
-    var graphHappy: View = findViewById(R.id.happyGraph)
-    var graphNeutral: View = findViewById(R.id.neutralGraph)
-    var graphSad: View = findViewById(R.id.sadGraph)
-    var graphVerySad: View = findViewById(R.id.verySadGraph)
+    lateinit var graph: ConstraintLayout
+    lateinit var graphVeryHappy: View
+    lateinit var graphHappy: View
+    lateinit var graphNeutral: View
+    lateinit var graphSad: View
+    lateinit var graphVerySad: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +41,16 @@ class MainActivity : AppCompatActivity() {
 
         jsonFile = JSONFile()
 
+        graph = findViewById(R.id.graph)
+        graphVeryHappy = findViewById(R.id.veryHappyGraph)
+        graphHappy = findViewById(R.id.happyGraph)
+        graphNeutral = findViewById(R.id.neutralGraph)
+        graphSad = findViewById(R.id.sadGraph)
+        graphVerySad = findViewById(R.id.verySadGraph)
+
         fetchingData()
         if(!data){
-            var emociones = ArrayList<Emociones>()
+            val emociones = ArrayList<Emociones>()
             val fondo = CustomCircleDrawable(this, emociones)
 
             graph.background = fondo
@@ -57,12 +64,12 @@ class MainActivity : AppCompatActivity() {
             iconoMayoria()
         }
 
-        var saveButton: Button = findViewById(R.id.saveButton)
-        var veryHappyButton: ImageButton = findViewById(R.id.veryHappyButton)
-        var happyButton: ImageButton = findViewById(R.id.happyButton)
-        var neutralButton: ImageButton = findViewById(R.id.neutralButton)
-        var sadButton: ImageButton = findViewById(R.id.sadButton)
-        var verySadButton: ImageButton = findViewById(R.id.verySadButton)
+        val saveButton: Button = findViewById(R.id.saveButton)
+        val veryHappyButton: ImageButton = findViewById(R.id.veryHappyButton)
+        val happyButton: ImageButton = findViewById(R.id.happyButton)
+        val neutralButton: ImageButton = findViewById(R.id.neutralButton)
+        val sadButton: ImageButton = findViewById(R.id.sadButton)
+        val verySadButton: ImageButton = findViewById(R.id.verySadButton)
 
         saveButton.setOnClickListener {
             guardar()
@@ -101,10 +108,10 @@ class MainActivity : AppCompatActivity() {
 
     fun fetchingData(){
         try{
-            var json: String = jsonFile?.getData(this) ?: ""
+            val json: String = jsonFile?.getData(this) ?: ""
             if(json != ""){
                 this.data = true
-                var jsonArray = JSONArray(json)
+                val jsonArray = JSONArray(json)
 
                 this.lista = parseJson(jsonArray)
 
@@ -126,7 +133,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun iconoMayoria(){
-        var icon: ImageView = findViewById(R.id.icon)
+        val icon: ImageView = findViewById(R.id.icon)
 
         if(veryHappy > happy && veryHappy > neutral && veryHappy > sad && veryHappy > verySad){
             icon.setImageDrawable(resources.getDrawable(R.drawable.ic_very_happy_40))
@@ -145,11 +152,11 @@ class MainActivity : AppCompatActivity() {
     fun actualizarGrafica(){
         val total = veryHappy + happy + neutral + sad + verySad
 
-        var pVH: Float = (veryHappy * 100/total).toFloat()
-        var pH: Float = (happy * 100/total).toFloat()
-        var pN: Float = (neutral * 100/total).toFloat()
-        var pS: Float = (sad * 100/total).toFloat()
-        var pVS: Float = (verySad * 100/total).toFloat()
+        val pVH: Float = (veryHappy * 100/total)
+        val pH: Float = (happy * 100/total)
+        val pN: Float = (neutral * 100/total)
+        val pS: Float = (sad * 100/total)
+        val pVS: Float = (verySad * 100/total)
 
         Log.d("porcentajes", "very happy "+pVH)
         Log.d("porcentajes", "happy "+pH)
@@ -177,7 +184,7 @@ class MainActivity : AppCompatActivity() {
 
     fun parseJson(jsonArray: JSONArray): ArrayList<Emociones>{
 
-        var lista = ArrayList<Emociones>()
+        val lista = ArrayList<Emociones>()
 
         for (i in 0..jsonArray.length()){
             try{
@@ -185,7 +192,7 @@ class MainActivity : AppCompatActivity() {
                 val porcentaje = jsonArray.getJSONObject(i).getDouble("porcentaje").toFloat()
                 val color = jsonArray.getJSONObject(i).getInt("color")
                 val total = jsonArray.getJSONObject(i).getDouble("total").toFloat()
-                var emocion = Emociones(nombre, porcentaje, color, total)
+                val emocion = Emociones(nombre, porcentaje, color, total)
                 lista.add(emocion)
             } catch (exception : JSONException){
                 exception.printStackTrace()
@@ -195,12 +202,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun guardar(){
-        var jsonArray = JSONArray()
-        var o: Int = 0
+        val jsonArray = JSONArray()
+        var o = 0
 
         for(i in lista){
             Log.d("objetos", i.toString())
-            var j: JSONObject = JSONObject()
+            val j = JSONObject()
             j.put("nombre", i.nombre)
             j.put("porcentaje", i.porcentaje)
             j.put("color", i.color)

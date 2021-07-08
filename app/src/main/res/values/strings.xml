@@ -7,4 +7,5 @@
     <string name="neutral">Neutral</string>
     <string name="happy">Feliz</string>
     <string name="veryHappy">Muy Feliz</string>
+    <string name="image">Sentimiento predominante</string>
 </resources>
